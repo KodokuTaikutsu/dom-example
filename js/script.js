@@ -36,7 +36,7 @@ function agregarPersona() {
   //Obtenemos el input donde se ingresa la edad
   const inputEdad = document.querySelector("#input-edad");
 
-  const inputEmail = document.querySelector("input-email");
+  const inputEmail = document.querySelector("#input-email");
 
   //Creamos una variable que indica si el formulario tiene error
   //Inicialmente suponemos que el fomulario NO tiene error
@@ -157,7 +157,7 @@ function actualizarLista() {
       persona.edad +
       "</td><td>" +
       persona.email
-      "</tr>";
+      "</td></tr>";
   }
 
   //Al final se colocará el html que se generó dentro del contenido del <tbody>
