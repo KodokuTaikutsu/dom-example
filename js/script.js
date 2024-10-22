@@ -3,10 +3,12 @@ const personas = [
   {
     nombre: "Juan Perez",
     edad: 18,
+    email: "mail@example.com",
   },
   {
     nombre: "Maria Loza",
     edad: 21,
+    email: "mail@example.com",
   },
 ];
 
@@ -21,11 +23,20 @@ function agregarPersona() {
   //borramos el contenido del elemento
   msgErrorEdad.innerHTML = "";
 
+  const msgErrorEmail = document.querySelector("#msg-error-email");
+  //borramos el contenido del elemento
+  msgErrorEmail.innerHTML = "";
+
+
+
+
   //Obtenemos el input donde se ingresa el nombre
   const inputNombre = document.querySelector("#input-nombre");
 
   //Obtenemos el input donde se ingresa la edad
   const inputEdad = document.querySelector("#input-edad");
+
+  const inputEmail = document.querySelector("input-email");
 
   //Creamos una variable que indica si el formulario tiene error
   //Inicialmente suponemos que el fomulario NO tiene error
@@ -57,6 +68,14 @@ function agregarPersona() {
     hayError = true;
   }
 
+  const email = inputEmail.value.trim();
+  if (email === "") {
+    //De ser asi, colocamos el mensaje de error al contenido del elemento para mostrar el error
+    msgErrorNombre.innerHTML = "Debe ingresar un email";
+    //Le asigamos el valor true indicando que el formulario tiene error
+    hayError = true;
+  }
+
   //Si el formulario tiene algun error (valores invalidos)
   if (hayError) {
     //Es lo mismo que escribir hayError === true
@@ -70,6 +89,7 @@ function agregarPersona() {
   const nuevaPersona = {
     nombre: nombre,
     edad: edad,
+    email: email,
   };
 
   //Ingresamos el nuevo objeto persona dentro del arreglo
@@ -77,6 +97,7 @@ function agregarPersona() {
   //Limpiamos los inputs
   inputNombre.value = "";
   inputEdad.value = "";
+  inputEmail.value = "";
 
   //Actualizamos la tabla de personas para reflejar los cambios en el arreglo
   actualizarLista();
@@ -107,7 +128,7 @@ function actualizarLista() {
     //El conenido de la tabla será un mensaje que indique que no hay personas registrados
     listaNombresHtml.innerHTML = `
             <tr>
-                <td colspan="3">No hay personas registradas</td>
+                <td colspan="4">No hay personas registradas</td>
             </tr>`;
     return;
   }
@@ -134,7 +155,9 @@ function actualizarLista() {
       persona.nombre +
       "</td><td>" +
       persona.edad +
-      "</td></tr>";
+      "</td><td>" +
+      persona.email
+      "</tr>";
   }
 
   //Al final se colocará el html que se generó dentro del contenido del <tbody>
